@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using EventBooking.Data;
 
 namespace EventBooking
 {
@@ -23,6 +26,10 @@ namespace EventBooking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            // Add framework services.
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            b => b.MigrationsAssembly("EventBooking")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
