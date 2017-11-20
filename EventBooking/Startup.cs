@@ -27,9 +27,9 @@ namespace EventBooking
         {
             services.AddMvc();
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly("EventBooking")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            //b => b.MigrationsAssembly("EventBooking")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿namespace EventBooking.Models.Identity
+﻿namespace Core.Entities.Identity
 {
     public class Guide : User
     {

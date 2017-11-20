@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿//using Microsoft.AspNetCore.Identity;
 
-namespace EventBooking.Models.Identity
+namespace Core.Entities.Identity
 {
-    public class User : IdentityUser
+    public class User //: IdentityUser
     {
         public byte[] ProfileImage { get; set; }
 
