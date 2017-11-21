@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using EventBooking.Data;
+using EventBooking.Infrastructure.Data;
 
 namespace EventBooking
 {
@@ -27,9 +27,9 @@ namespace EventBooking
         {
             services.AddMvc();
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly("EventBooking")));
+            b => b.MigrationsAssembly("EventBooking.Web")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
