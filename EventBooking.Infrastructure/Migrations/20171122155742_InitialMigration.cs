@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace EventBooking.Web.Migrations
+namespace EventBooking.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,7 +63,6 @@ namespace EventBooking.Web.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    ParticipantMail = table.Column<string>(nullable: true),
                     Resume = table.Column<string>(nullable: true),
                     FacebookLink = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
@@ -78,12 +77,6 @@ namespace EventBooking.Web.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Mail);
-                    table.ForeignKey(
-                        name: "FK_Users_Users_ParticipantMail",
-                        column: x => x.ParticipantMail,
-                        principalTable: "Users",
-                        principalColumn: "Mail",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Users_Users_UserMail",
                         column: x => x.UserMail,
@@ -151,7 +144,6 @@ namespace EventBooking.Web.Migrations
                 columns: table => new
                 {
                     EventID = table.Column<int>(nullable: true),
-                    ImageID = table.Column<Guid>(nullable: true),
                     ID = table.Column<Guid>(nullable: false),
                     Data = table.Column<byte[]>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
@@ -159,7 +151,6 @@ namespace EventBooking.Web.Migrations
                     Length = table.Column<int>(nullable: false),
                     Name = table.Column<byte[]>(nullable: false),
                     Width = table.Column<int>(nullable: false),
-                    UserImage_EventID = table.Column<int>(nullable: true),
                     UserMail = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -171,18 +162,6 @@ namespace EventBooking.Web.Migrations
                         principalTable: "Events",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Images_Images_ImageID",
-                        column: x => x.ImageID,
-                        principalTable: "Images",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Images_Events_UserImage_EventID",
-                        column: x => x.UserImage_EventID,
-                        principalTable: "Events",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Images_Users_UserMail",
                         column: x => x.UserMail,
@@ -224,28 +203,14 @@ namespace EventBooking.Web.Migrations
                 name: "IX_Images_EventID",
                 table: "Images",
                 column: "EventID",
-                unique: true,
-                filter: "[EventID] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_ImageID",
-                table: "Images",
-                column: "ImageID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_UserImage_EventID",
-                table: "Images",
-                column: "UserImage_EventID");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_UserMail",
                 table: "Images",
-                column: "UserMail");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_ParticipantMail",
-                table: "Users",
-                column: "ParticipantMail");
+                column: "UserMail",
+                unique: true,
+                filter: "[UserMail] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserMail",

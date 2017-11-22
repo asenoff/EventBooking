@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
-namespace EventBooking.Web.Migrations
+namespace EventBooking.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20171122121943_ExplicitTables")]
-    partial class ExplicitTables
+    [Migration("20171122155742_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -187,15 +187,10 @@ namespace EventBooking.Web.Migrations
 
                     b.Property<int>("EventID");
 
-                    b.Property<Guid?>("ImageID");
-
                     b.HasIndex("EventID")
-                        .IsUnique()
-                        .HasFilter("[EventID] IS NOT NULL");
+                        .IsUnique();
 
-                    b.HasIndex("ImageID");
-
-                    b.ToTable("EventImages");
+                    b.ToTable("EventImage");
 
                     b.HasDiscriminator().HasValue("EventImage");
                 });
@@ -204,18 +199,13 @@ namespace EventBooking.Web.Migrations
                 {
                     b.HasBaseType("EventBooking.Core.Entities.DatabaseModels.Image");
 
-                    b.Property<int?>("EventID")
-                        .HasColumnName("UserImage_EventID");
-
                     b.Property<string>("UserMail");
-
-                    b.HasIndex("EventID");
 
                     b.HasIndex("UserMail")
                         .IsUnique()
                         .HasFilter("[UserMail] IS NOT NULL");
 
-                    b.ToTable("UserImages");
+                    b.ToTable("UserImage");
 
                     b.HasDiscriminator().HasValue("UserImage");
                 });
@@ -233,7 +223,7 @@ namespace EventBooking.Web.Migrations
 
                     b.HasIndex("UserMail");
 
-                    b.ToTable("Participants");
+                    b.ToTable("Users");
 
                     b.HasDiscriminator().HasValue("Participant");
                 });
@@ -242,14 +232,10 @@ namespace EventBooking.Web.Migrations
                 {
                     b.HasBaseType("EventBooking.Core.Entities.DatabaseModels.Participant");
 
-                    b.Property<string>("ParticipantMail");
-
                     b.Property<string>("Resume")
                         .IsRequired();
 
-                    b.HasIndex("ParticipantMail");
-
-                    b.ToTable("Guides");
+                    b.ToTable("Users");
 
                     b.HasDiscriminator().HasValue("Guide");
                 });
@@ -302,18 +288,10 @@ namespace EventBooking.Web.Migrations
                         .WithOne("Image")
                         .HasForeignKey("EventBooking.Core.Entities.DatabaseModels.EventImage", "EventID")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EventBooking.Core.Entities.DatabaseModels.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageID");
                 });
 
             modelBuilder.Entity("EventBooking.Core.Entities.DatabaseModels.UserImage", b =>
                 {
-                    b.HasOne("EventBooking.Core.Entities.DatabaseModels.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventID");
-
                     b.HasOne("EventBooking.Core.Entities.DatabaseModels.User", "User")
                         .WithOne("Image")
                         .HasForeignKey("EventBooking.Core.Entities.DatabaseModels.UserImage", "UserMail");
@@ -324,13 +302,6 @@ namespace EventBooking.Web.Migrations
                     b.HasOne("EventBooking.Core.Entities.DatabaseModels.User", "User")
                         .WithMany()
                         .HasForeignKey("UserMail");
-                });
-
-            modelBuilder.Entity("EventBooking.Core.Entities.DatabaseModels.Guide", b =>
-                {
-                    b.HasOne("EventBooking.Core.Entities.DatabaseModels.Participant", "Participant")
-                        .WithMany()
-                        .HasForeignKey("ParticipantMail");
                 });
 #pragma warning restore 612, 618
         }

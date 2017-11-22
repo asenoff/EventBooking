@@ -29,7 +29,7 @@ namespace EventBooking
             // Add framework services.
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly("EventBooking.Web")));
+            b => b.MigrationsAssembly("EventBooking.Infrastructure")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

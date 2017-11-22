@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.Web", "EventBooking\EventBooking.Web.csproj", "{3D9AC40A-30E6-434B-9EFF-6A952E3E2872}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Core", "EventBooking.Core\EventBooking.Core.csproj", "{E5800249-1DFB-426F-BBCA-4718BC657C1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.Core", "EventBooking.Core\EventBooking.Core.csproj", "{E5800249-1DFB-426F-BBCA-4718BC657C1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Infrastructure", "EventBooking.Infrastructure\EventBooking.Infrastructure.csproj", "{AC4B815A-8611-4A3C-9973-7851B910B10A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.Tests", "EventBooking.Tests\EventBooking.Tests.csproj", "{9E6E7603-2B8F-4144-8324-183EE477842C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Tests", "EventBooking.Tests\EventBooking.Tests.csproj", "{9E6E7603-2B8F-4144-8324-183EE477842C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Infrastructure", "EventBooking.Infrastructure\EventBooking.Infrastructure.csproj", "{0D614D79-F4F5-4443-A83F-58CEFF74945F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{E5800249-1DFB-426F-BBCA-4718BC657C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5800249-1DFB-426F-BBCA-4718BC657C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5800249-1DFB-426F-BBCA-4718BC657C1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC4B815A-8611-4A3C-9973-7851B910B10A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC4B815A-8611-4A3C-9973-7851B910B10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC4B815A-8611-4A3C-9973-7851B910B10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC4B815A-8611-4A3C-9973-7851B910B10A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E6E7603-2B8F-4144-8324-183EE477842C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E6E7603-2B8F-4144-8324-183EE477842C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6E7603-2B8F-4144-8324-183EE477842C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6E7603-2B8F-4144-8324-183EE477842C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D614D79-F4F5-4443-A83F-58CEFF74945F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D614D79-F4F5-4443-A83F-58CEFF74945F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D614D79-F4F5-4443-A83F-58CEFF74945F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D614D79-F4F5-4443-A83F-58CEFF74945F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
