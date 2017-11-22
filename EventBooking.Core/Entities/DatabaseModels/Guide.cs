@@ -1,7 +1,20 @@
-﻿namespace EventBooking.Core.Entities.DatabaseModels
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using EventBooking.Core.Entities.DatabaseModels.ManyToMany;
+
+namespace EventBooking.Core.Entities.DatabaseModels
 {
     public class Guide : Participant
     {
-        public Image Image { get; set; }
+        public Guide()
+        {
+            GuidedEvents = new HashSet<EventGuide>();
+        }
+
+        [Required]
+        public string Resume { get; set; }
+        
+        public virtual ICollection<EventGuide> GuidedEvents { get; set; }
     }
 }

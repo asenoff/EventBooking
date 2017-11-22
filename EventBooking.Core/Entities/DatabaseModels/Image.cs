@@ -3,15 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-    public class Image
+    public abstract class Image
     {
-        [Key]
+        [Key, Required]
         public Guid ID { get; set; }
 
+        [Required]
         public Byte[] Name { get; set; }
 
+        [Required]
         public Byte[] Data { get; set; }
 
+        [Required]
         public int Length { get; set; }
 
         public int Width { get; set; }

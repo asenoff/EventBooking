@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-    public class Rights
+    public class RightsSet
     {
-        [Key]
-        public string RightsModelName { get; set; }
+        [Key, Required]
+        public string RightsAlias { get; set; }
 
         public bool CanCreateEvents { get; set; }
 
@@ -22,5 +24,7 @@ namespace EventBooking.Core.Entities.DatabaseModels
         public bool CanUpdateUser { get; set; }
 
         public bool CanChangeRights { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }
