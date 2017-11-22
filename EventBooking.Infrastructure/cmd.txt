@@ -1,0 +1,3 @@
+﻿dotnet ef migrations add InitialMigration -s ../EventBooking/
+dotnet ef migrations remove InitialMigration -s ../EventBooking/
+dotnet ef database update -s ../EventBooking/
