@@ -38,5 +38,9 @@ namespace EventBooking.Core.Entities.DatabaseModels
         public virtual EventImage Image { get; set; }
 
         public int MaxNumberOfParticipants { get; set; }
+
+        public bool MembershipPreference { get; set; } = true;
+
+        public bool FirstTimerPreference { get; set; } = false;
     }
 }
