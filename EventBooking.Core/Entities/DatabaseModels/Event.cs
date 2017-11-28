@@ -21,12 +21,15 @@ namespace EventBooking.Core.Entities.DatabaseModels
         public virtual ICollection<EventParticipant> EventParticipants { get; set; }
 
         [Required]
+        [StringLength(1200)]
         public string Name { get; set; }
 
         [Required]
+        [StringLength(2000, MinimumLength = 20)]
         public string Description { get; set; }
 
         [Required]
+        [StringLength(200)]
         public string Place { get; set; }
 
         [Required]
@@ -38,6 +41,10 @@ namespace EventBooking.Core.Entities.DatabaseModels
         public virtual EventImage Image { get; set; }
 
         public int MaxNumberOfParticipants { get; set; }
+
+        public int? MinNumberOfCars { get; set; }
+
+        public bool OrganizeCarsTransportation { get; set; }
 
         public bool MembershipPreference { get; set; } = true;
 

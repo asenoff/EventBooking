@@ -12,9 +12,10 @@ namespace EventBooking.Core.Entities.DatabaseModels
             AttendedEvents = new HashSet<EventParticipant>();
         }
 
-        [Required]
+        [Required, Phone]
         public string Phone { get; set; }
         
+        [Url]
         public string FacebookLink { get; set; }
 
         public virtual User User { get; set; }

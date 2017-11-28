@@ -15,7 +15,13 @@ namespace EventBooking.Infrastructure.Data
         public DbSet<Image> Images { get; set; }
         
         public DbSet<Event> Events { get; set; }
-        
+
+        public DbSet<Car> Cars { get; set; }
+
+        public DbSet<Driver> Drivers { get; set; }
+
+        public DbSet<Passenger> Passengers { get; set; }
+
         public DbSet<EventGuide> EventGuides { get; set; }
         
         public DbSet<EventParticipant> EventParticipants { get; set; }

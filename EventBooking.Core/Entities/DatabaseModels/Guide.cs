@@ -12,7 +12,7 @@ namespace EventBooking.Core.Entities.DatabaseModels
             GuidedEvents = new HashSet<EventGuide>();
         }
 
-        [Required]
+        [Required, StringLength(500)]
         public string Resume { get; set; }
         
         public virtual ICollection<EventGuide> GuidedEvents { get; set; }

@@ -12,9 +12,10 @@ using System;
 namespace EventBooking.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171128182749_TransportationAdded")]
+    partial class TransportationAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,9 +24,8 @@ namespace EventBooking.Infrastructure.Migrations
 
             modelBuilder.Entity("EventBooking.Core.Entities.DatabaseModels.Car", b =>
                 {
-                    b.Property<string>("RegistrationID")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(10);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Alias")
                         .IsRequired()
@@ -38,7 +38,7 @@ namespace EventBooking.Infrastructure.Migrations
 
                     b.Property<int>("PassengerCount");
 
-                    b.HasKey("RegistrationID");
+                    b.HasKey("Id");
 
                     b.ToTable("Cars");
                 });
@@ -54,17 +54,13 @@ namespace EventBooking.Infrastructure.Migrations
 
                     b.Property<string>("ParticipantMail");
 
-                    b.Property<string>("RegistrationId");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CarId");
 
                     b.HasIndex("EventId");
 
                     b.HasIndex("ParticipantMail");
-
-                    b.HasIndex("RegistrationId")
-                        .IsUnique()
-                        .HasFilter("[RegistrationId] IS NOT NULL");
 
                     b.ToTable("Drivers");
                 });
@@ -179,15 +175,13 @@ namespace EventBooking.Infrastructure.Migrations
 
                     b.Property<Guid>("CarId");
 
-                    b.Property<string>("CarRegistrationID");
-
                     b.Property<int>("EventId");
 
                     b.Property<string>("ParticipantMail");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarRegistrationID");
+                    b.HasIndex("CarId");
 
                     b.HasIndex("EventId");
 
@@ -327,6 +321,11 @@ namespace EventBooking.Infrastructure.Migrations
 
             modelBuilder.Entity("EventBooking.Core.Entities.DatabaseModels.Driver", b =>
                 {
+                    b.HasOne("EventBooking.Core.Entities.DatabaseModels.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("EventBooking.Core.Entities.DatabaseModels.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
@@ -335,10 +334,6 @@ namespace EventBooking.Infrastructure.Migrations
                     b.HasOne("EventBooking.Core.Entities.DatabaseModels.Participant", "Participant")
                         .WithMany()
                         .HasForeignKey("ParticipantMail");
-
-                    b.HasOne("EventBooking.Core.Entities.DatabaseModels.Car", "Car")
-                        .WithOne("Driver")
-                        .HasForeignKey("EventBooking.Core.Entities.DatabaseModels.Driver", "RegistrationId");
                 });
 
             modelBuilder.Entity("EventBooking.Core.Entities.DatabaseModels.ManyToMany.EventGuide", b =>
@@ -371,7 +366,8 @@ namespace EventBooking.Infrastructure.Migrations
                 {
                     b.HasOne("EventBooking.Core.Entities.DatabaseModels.Car", "Car")
                         .WithMany()
-                        .HasForeignKey("CarRegistrationID");
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EventBooking.Core.Entities.DatabaseModels.Event", "Event")
                         .WithMany()

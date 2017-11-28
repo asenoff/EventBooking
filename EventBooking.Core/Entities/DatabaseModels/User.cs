@@ -7,13 +7,13 @@ namespace EventBooking.Core.Entities.DatabaseModels
     [Table("Users")]
     public abstract class User
     {
-        [Key, Required]
+        [Key, Required, EmailAddress]
         public string Mail { get; set; }
 
-        [Required]
+        [Required, StringLength(50)]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required, StringLength(50)]
         public string LastName { get; set; }
 
         [Required]
