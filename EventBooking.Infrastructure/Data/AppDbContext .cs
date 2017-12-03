@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using EventBooking.Core.Entities.DatabaseModels;
 using EventBooking.Core.Entities.DatabaseModels.ManyToMany;
 
 namespace EventBooking.Infrastructure.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
-
-        public DbSet<User> Users { get; set; }
         
         public DbSet<Image> Images { get; set; }
         

@@ -1,15 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-
-    [Table("Users")]
-    public abstract class User
+    public abstract class AppUser : IdentityUser
     {
-        [Key, Required, EmailAddress]
-        public string Mail { get; set; }
-
         [Required, StringLength(50)]
         public string FirstName { get; set; }
 

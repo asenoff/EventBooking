@@ -5,7 +5,7 @@ using EventBooking.Core.Entities.DatabaseModels.ManyToMany;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-    public abstract class Participant : User
+    public abstract class Participant : AppUser
     {
         public Participant()
         {
@@ -18,7 +18,7 @@ namespace EventBooking.Core.Entities.DatabaseModels
         [Url]
         public string FacebookLink { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
 
         public virtual ICollection<EventParticipant> AttendedEvents { get; set; }
     }

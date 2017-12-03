@@ -12,6 +12,6 @@ namespace EventBooking.Core.Entities.DatabaseModels
 
         public bool RecieveFullEventInfo { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

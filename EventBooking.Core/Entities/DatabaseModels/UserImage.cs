@@ -9,6 +9,6 @@ namespace EventBooking.Core.Entities.DatabaseModels
         [ForeignKey("User")]
         public string UserMail { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

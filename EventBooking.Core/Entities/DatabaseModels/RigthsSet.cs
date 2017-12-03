@@ -25,6 +25,6 @@ namespace EventBooking.Core.Entities.DatabaseModels
 
         public bool CanChangeRights { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<AppUser> Users { get; set; }
     }
 }
