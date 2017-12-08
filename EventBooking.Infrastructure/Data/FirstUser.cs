@@ -2,24 +2,27 @@
 
 namespace EventBooking.Infrastructure.Data
 {
-    public static class FirstUser
+    public class FirstUser
     {
-        public static AppUser User
+        private AppUser user = 
+            new AppUser(){
+                Email = "kaloyan@asenoff.net",
+                UserName = "kaloyan@asenoff.net",
+                FirstName = "Kaloyan",
+                LastName = "Asenov",
+                EmailConfirmed = true,
+                IsClubMember = true,
+                Preferences = new PreferencesSet
+                {
+                    RecieveFullEventInfo = true,
+                    RecieveMailsFromApp = true
+                }
+            };
+
+        public AppUser User
         {
             get {
-                return new AppUser()
-                {
-                    Email = "kaloyan@asenoff.net",
-                    FirstName = "Kaloyan",
-                    LastName = "Asenov",
-                    EmailConfirmed = true,
-                    IsClubMember = true,
-                    Preferences = new PreferencesSet
-                    {
-                        RecieveFullEventInfo = true,
-                        RecieveMailsFromApp = true
-                    }
-                };
+                return user;
             }
         }
 

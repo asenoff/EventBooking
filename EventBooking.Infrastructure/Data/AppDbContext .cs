@@ -5,7 +5,7 @@ using EventBooking.Core.Entities.DatabaseModels.ManyToMany;
 
 namespace EventBooking.Infrastructure.Data
 {
-    public class AppDbContext : IdentityDbContext<AppUser>
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {

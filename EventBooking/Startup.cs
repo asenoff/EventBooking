@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,8 @@ using AutoMapper;
 using EventBooking.Infrastructure.Data;
 using EventBooking.Infrastructure.Init;
 using EventBooking.Core.Entities.DatabaseModels;
+using EventBooking.Core.Factories;
+using EventBooking.Core.Interfaces;
 
 namespace EventBooking
 {
@@ -59,6 +62,14 @@ namespace EventBooking
 
             services.AddAutoMapper();
             services.AddTransient<DbInitializer>();
+            services.AddTransient<FirstUser>();
+            services.AddTransient<IIdentityRoleFactory, IdentityRoleFactory>(f => {
+                var dict = new Dictionary<Type, Func<string, IdentityRole>> {
+                    { typeof (AppRole), (name) => new AppRole(name) }
+                };
+
+                return new IdentityRoleFactory(dict);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
