@@ -2,7 +2,10 @@
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-    public abstract class AppRole : IdentityRole
+    public class AppRole : IdentityRole
     {
+        public AppRole(string roleName) : base(roleName)
+        {
+        }
     }
 }

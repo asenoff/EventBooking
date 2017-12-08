@@ -5,7 +5,7 @@ using EventBooking.Core.Entities.DatabaseModels.ManyToMany;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-    public abstract class Participant : AppUser
+    public class Participant : AppUser
     {
         public Participant()
         {

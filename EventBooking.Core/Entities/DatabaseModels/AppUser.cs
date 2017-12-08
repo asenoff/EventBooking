@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
-    public abstract class AppUser : IdentityUser
+    public class AppUser : IdentityUser
     {
         [Required, StringLength(50)]
         public string FirstName { get; set; }
@@ -14,12 +14,6 @@ namespace EventBooking.Core.Entities.DatabaseModels
 
         [Required]
         public bool IsClubMember { get; set; }
-
-        [ForeignKey("Rights")]
-        public string RightsAlias { get; set; }
-
-        [Required]
-        public virtual RightsSet Rights { get; set; }
         
         [Required]
         public virtual PreferencesSet Preferences { get; set; }

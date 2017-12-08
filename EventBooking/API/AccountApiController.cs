@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
@@ -22,9 +23,9 @@ namespace EventBooking.Controllers
             _appDbContext = appDbContext;
         }
 
-        //TODO - first seed data in roles - https://forums.asp.net/t/2122687.aspx?How+to+Seed+Data+in+Core+
         // PUT api/accounts
         [HttpPut("create")]
+        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody]AppUserDTO model)
         {
             if (!ModelState.IsValid)

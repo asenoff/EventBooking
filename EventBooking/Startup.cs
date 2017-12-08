@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using AutoMapper;
 
 using EventBooking.Infrastructure.Data;
+using EventBooking.Infrastructure.Init;
 using EventBooking.Core.Entities.DatabaseModels;
 
 namespace EventBooking
@@ -57,10 +58,11 @@ namespace EventBooking
             });
 
             services.AddAutoMapper();
+            services.AddTransient<DbInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -89,6 +91,8 @@ namespace EventBooking
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
+            dbInitializer.Seed().Wait();
         }
     }
 }

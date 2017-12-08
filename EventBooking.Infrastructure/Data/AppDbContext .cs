@@ -26,8 +26,6 @@ namespace EventBooking.Infrastructure.Data
         public DbSet<EventParticipant> EventParticipants { get; set; }
         
         public DbSet<PreferencesSet> Preferences { get; set; }
-        
-        public DbSet<RightsSet> Rights { get; set; }
 
         public DbSet<Mails> Mails { get; set; }
 
