@@ -51,6 +51,9 @@ namespace EventBooking
 
                 // User settings
                 options.User.RequireUniqueEmail = true;
+
+                // Sign in settings
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             services.AddAutoMapper();
