@@ -3,7 +3,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using EventBooking.Core;
 using EventBooking.Core.Interfaces;
 using EventBooking.Core.Entities;
 using Microsoft.Extensions.Options;

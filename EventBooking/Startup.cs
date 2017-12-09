@@ -19,7 +19,7 @@ using EventBooking.Core.Entities.DatabaseModels;
 using EventBooking.Core.Factories;
 using EventBooking.Core.Interfaces;
 
-namespace EventBooking
+namespace EventBooking.Web
 {
     public class Startup
     {
@@ -98,6 +98,7 @@ namespace EventBooking
             });
 
             services.AddAutoMapper();
+            services.AddSingleton<IJwtFactory, JwtFactory>();
             services.AddTransient<DbInitializer>();
             services.AddTransient<FirstUser>();
             services.AddTransient<IIdentityRoleFactory, IdentityRoleFactory>(f => {

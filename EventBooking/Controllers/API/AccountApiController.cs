@@ -32,11 +32,26 @@ namespace EventBooking.Web.Controllers
             {
                 return BadRequest(ModelState);
             }
-        
-            var userIdentity = _mapper.Map<AppUser>(model);
-            var result = await _userManager.CreateAsync(userIdentity, model.Password);
+
+            AppUser newUser = new AppUser {
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                IsClubMember = false,
+                Preferences = new PreferencesSet {
+                    RecieveFullEventInfo = false,
+                    RecieveMailsFromApp = true
+                }
+            };
+
+            var result = await _userManager.CreateAsync(newUser, model.Password);
             if (!result.Succeeded)
             {
+                foreach (var e in result.Errors)
+                {
+                    ModelState.TryAddModelError(e.Code, e.Description);
+                }
+
                 return new BadRequestObjectResult(ModelState);
             }
                 
