@@ -7,7 +7,7 @@ using EventBooking.Infrastructure.Data;
 using EventBooking.Core.Entities.DatabaseModels;
 using EventBooking.Web.ApiModels;
 
-namespace EventBooking.Controllers
+namespace EventBooking.Web.Controllers
 {
     [Route("api/[controller]")]
     public class AccountController : Controller

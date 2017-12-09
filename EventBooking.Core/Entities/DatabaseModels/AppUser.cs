@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using limits = EventBooking.Core.Constants.Numeric.DataValidationRestrictions;
 
 namespace EventBooking.Core.Entities.DatabaseModels
 {
     public class AppUser : IdentityUser
     {
-        [Required, StringLength(50)]
+        [Required, StringLength(limits.MaxUserName)]
         public string FirstName { get; set; }
 
-        [Required, StringLength(50)]
+        [Required, StringLength(limits.MaxUserName)]
         public string LastName { get; set; }
 
         [Required]
